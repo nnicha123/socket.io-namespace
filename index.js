@@ -12,9 +12,19 @@ app.get("/", (req, res) => {
 });
 
 const io = require("socket.io")(server);
+const orders = io.of("/orders");
+const users = io.of("/users");
 
 io.on("connection", (socket) => {
   console.log(socket.id);
+});
+
+orders.on("connection", (socket) => {
+  console.log("connected to orders namespace", socket.id);
+});
+
+users.on("connection", (socket) => {
+  console.log("connected to users namespace", socket.id);
 });
 
 server.listen(PORT, () => {

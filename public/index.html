@@ -7,11 +7,22 @@
 </head>
 <body>
     Hello
+    <button (click)="emitHelloFromUsers()"></button>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io('/');
         socket.on('connect', () => {
             console.log('socket id', socket.id)
+        })
+
+        const ordersSocket = io('/orders');
+        ordersSocket.on('connect',()=> {
+            console.log('orders socket id', ordersSocket.id)
+        })
+
+        const usersSocket = io('/users');
+        usersSocket.on('connect',() => {
+            console.log('users socket id', usersSocket.id)
         })
     </script>
 </body>
